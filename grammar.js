@@ -49,34 +49,29 @@ module.exports = grammar({
     // Pragmas: #include, #define, #import, #question
     pragma: ($) =>
       seq(
-        field("directive", $.pragma_directive),
+        $.pragma_directive,
         field(
           "value",
           choice(
             $.string,
             $.single_quoted_string,
             $.identifier,
-            $.keyword,
-            $.type_name,
+            $.builtin_keyword,
+            $.type_keyword,
           ),
         ),
       ),
 
-    // Create actual nodes for pragma directives
+    // Pragma directives as tokens
     pragma_directive: ($) =>
-      choice(
-        alias("#include", $.include_directive),
-        alias("#define", $.define_directive),
-        alias("#import", $.import_directive),
-        alias("#question", $.question_directive),
-      ),
+      choice("#include", "#define", "#import", "#question"),
 
     // Type annotations like @variable: type
     declaration: ($) =>
       seq(
         field("name", $.at_variable),
         ":",
-        field("type", choice($.type_name, $.identifier)),
+        field("type", choice($.type_keyword, $.identifier)),
       ),
 
     // Variable assignment
@@ -84,26 +79,23 @@ module.exports = grammar({
       prec(
         PREC.ASSIGN,
         seq(
-          optional(field("const_modifier", alias("const", $.const_keyword))),
+          optional("const"),
           field("name", choice($.identifier, $.at_variable)),
           "=",
           field("value", $._expression),
         ),
       ),
 
-    // Control structures - right associativity for if to resolve dangling else
+    // Control structures
     if_statement: ($) =>
       prec.right(
         PREC.STATEMENT,
         seq(
-          field("if_keyword", alias("if", $.if_keyword)),
+          "if",
           field("condition", $._expression),
           field("consequence", choice($.block, $._statement)),
           optional(
-            seq(
-              field("else_keyword", alias("else", $.else_keyword)),
-              field("alternative", choice($.block, $._statement)),
-            ),
+            seq("else", field("alternative", choice($.block, $._statement))),
           ),
         ),
       ),
@@ -112,38 +104,31 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          field("for_keyword", alias("for", $.for_keyword)),
+          "for",
           field("variable", $.identifier),
-          field("in_keyword", alias("in", $.in_keyword)),
+          "in",
           field("iterable", $._expression),
           field("body", choice($.block, $._statement)),
         ),
       ),
 
-    // More specific repeat statement variants
     repeat_statement: ($) =>
       prec(
         PREC.STATEMENT,
         choice(
-          // repeat variable for count { ... }
           seq(
-            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
+            "repeat",
             field("variable", $.identifier),
-            field("for_keyword", alias("for", $.for_keyword)),
+            "for",
             field("count", $._expression),
             field("body", choice($.block, $._statement)),
           ),
-          // repeat count { ... }
           seq(
-            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
+            "repeat",
             field("count", $._expression),
             field("body", choice($.block, $._statement)),
           ),
-          // repeat { ... }
-          seq(
-            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
-            field("body", choice($.block, $._statement)),
-          ),
+          seq("repeat", field("body", choice($.block, $._statement))),
         ),
       ),
 
@@ -151,7 +136,7 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          field("menu_keyword", alias("menu", $.menu_keyword)),
+          "menu",
           optional(field("title", $._expression)),
           field("body", $.block),
         ),
@@ -161,17 +146,15 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          field("item_keyword", alias("item", $.item_keyword)),
+          "item",
           field("title", $._expression),
           ":",
           field("body", choice($.block, $._statement)),
         ),
       ),
 
-    // Block of statements - lower precedence than dictionary
     block: ($) => prec(1, seq("{", repeat($._statement), "}")),
 
-    // Expressions
     _expression: ($) =>
       choice(
         $.binary_expression,
@@ -184,12 +167,11 @@ module.exports = grammar({
         $.string,
         $.single_quoted_string,
         $.boolean,
-        $.named_constant,
-        $.keyword,
-        $.type_name,
+        $.builtin_constant,
+        $.builtin_keyword,
+        $.type_keyword,
       ),
 
-    // Dictionary literals - higher precedence than block
     dictionary: ($) =>
       prec(
         PREC.DICTIONARY,
@@ -203,35 +185,56 @@ module.exports = grammar({
         field("value", $._expression),
       ),
 
-    // Boolean literals - create actual nodes
-    boolean: ($) =>
-      choice(alias("true", $.true_literal), alias("false", $.false_literal)),
+    // Boolean literals
+    boolean: ($) => choice("true", "false"),
 
-    // Keywords from TextMate - now create actual nodes
-    keyword: ($) =>
+    // Built-in keywords as a single rule
+    builtin_keyword: ($) =>
       choice(
-        alias("name", $.name_keyword),
-        alias("glyph", $.glyph_keyword),
-        alias("from", $.from_keyword),
-        alias("mac", $.mac_keyword),
-        alias("inputs", $.inputs_keyword),
-        alias("noinput", $.noinput_keyword),
-        alias("askfor", $.askfor_keyword),
-        alias("getclipboard", $.getclipboard_keyword),
-        alias("list", $.list_keyword),
-        alias("nil", $.nil_keyword),
-        alias("action", $.action_keyword),
-        alias("stop", $.stop_keyword),
-        alias("makeVCard", $.makevcard_keyword),
-        alias("rawAction", $.rawaction_keyword),
-        alias("embedFile", $.embedfile_keyword),
-        alias("nothing", $.nothing_keyword),
+        "name",
+        "glyph",
+        "from",
+        "mac",
+        "inputs",
+        "noinput",
+        "askfor",
+        "getclipboard",
+        "list",
+        "nil",
+        "action",
+        "stop",
+        "makeVCard",
+        "rawAction",
+        "embedFile",
+        "nothing",
       ),
 
-    // Parenthesized expression for grouping
+    // Built-in constants as a single rule
+    builtin_constant: ($) =>
+      choice(
+        "CurrentDate",
+        "Device",
+        "RepeatIndex",
+        "RepeatItem",
+        "ShortcutInput",
+        "Ask",
+      ),
+
+    // Type keywords as a single rule
+    type_keyword: ($) =>
+      choice(
+        "text",
+        "number",
+        "bool",
+        "dictionary",
+        "array",
+        "variable",
+        "color",
+        "float",
+      ),
+
     parenthesized_expression: ($) => seq("(", $._expression, ")"),
 
-    // Binary expressions with proper precedence
     binary_expression: ($) =>
       choice(
         prec.left(PREC.PRODUCT, seq($._expression, "*", $._expression)),
@@ -246,22 +249,22 @@ module.exports = grammar({
         prec.left(PREC.RELATIONAL, seq($._expression, ">=", $._expression)),
       ),
 
-    // Function calls: name(arg1, arg2, ...)
     call: ($) =>
       prec.left(
         PREC.CALL,
         seq(
-          field("function", choice($.identifier, $.keyword, $.type_name)),
+          field(
+            "function",
+            choice($.identifier, $.builtin_keyword, $.type_keyword),
+          ),
           "(",
           optional(field("arguments", commaSep($._expression))),
           ")",
         ),
       ),
 
-    // At-variables (@variable) - matches @[^ ]+ pattern from TextMate
     at_variable: ($) => /@[^ \t\n\r:]+/,
 
-    // Double-quoted strings with interpolation support
     string: ($) =>
       seq(
         '"',
@@ -269,7 +272,6 @@ module.exports = grammar({
         '"',
       ),
 
-    // Single-quoted strings (simpler, no interpolation)
     single_quoted_string: ($) =>
       seq(
         "'",
@@ -281,40 +283,12 @@ module.exports = grammar({
 
     escape_sequence: ($) => token.immediate(seq("\\", /./)),
 
-    // String interpolation {content}
     interpolation: ($) => seq("{", repeat(/[^}]/), "}"),
 
-    // Numbers - matches \b[0-9]+\b pattern from TextMate
     number: ($) => /[0-9]+(\.[0-9]+)?/,
 
-    // Identifiers
     identifier: ($) => /[A-Za-z_][A-Za-z0-9_]*/,
 
-    // Named constants - now create actual nodes
-    named_constant: ($) =>
-      choice(
-        alias("CurrentDate", $.currentdate_constant),
-        alias("Device", $.device_constant),
-        alias("RepeatIndex", $.repeatindex_constant),
-        alias("RepeatItem", $.repeatitem_constant),
-        alias("ShortcutInput", $.shortcutinput_constant),
-        alias("Ask", $.ask_constant),
-      ),
-
-    // Types - now create actual nodes
-    type_name: ($) =>
-      choice(
-        alias("text", $.text_type),
-        alias("number", $.number_type),
-        alias("bool", $.bool_type),
-        alias("dictionary", $.dictionary_type),
-        alias("array", $.array_type),
-        alias("variable", $.variable_type),
-        alias("color", $.color_type),
-        alias("float", $.float_type),
-      ),
-
-    // Comments - both line and block comments
     comment: ($) =>
       choice(
         seq("//", /.*/),
@@ -323,7 +297,6 @@ module.exports = grammar({
   },
 });
 
-// Utility for comma-separated lists
 function commaSep(rule) {
   return seq(rule, repeat(seq(",", rule)));
 }

@@ -3,16 +3,6 @@
     "type": "assignment",
     "named": true,
     "fields": {
-      "const_modifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "const_keyword",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -44,6 +34,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -53,14 +51,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -80,7 +70,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -108,6 +98,14 @@
           "named": true
         },
         {
+          "type": "builtin_constant",
+          "named": true
+        },
+        {
+          "type": "builtin_keyword",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -117,14 +115,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "named_constant",
           "named": true
         },
         {
@@ -144,7 +134,7 @@
           "named": true
         },
         {
-          "type": "type_name",
+          "type": "type_keyword",
           "named": true
         }
       ]
@@ -179,6 +169,14 @@
           "named": true
         },
         {
+          "type": "builtin_constant",
+          "named": true
+        },
+        {
+          "type": "builtin_keyword",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -207,15 +205,7 @@
           "named": true
         },
         {
-          "type": "keyword",
-          "named": true
-        },
-        {
           "type": "menu_statement",
-          "named": true
-        },
-        {
-          "type": "named_constant",
           "named": true
         },
         {
@@ -243,7 +233,7 @@
           "named": true
         },
         {
-          "type": "type_name",
+          "type": "type_keyword",
           "named": true
         }
       ]
@@ -252,21 +242,17 @@
   {
     "type": "boolean",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "false_literal",
-          "named": true
-        },
-        {
-          "type": "true_literal",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
+  },
+  {
+    "type": "builtin_constant",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "builtin_keyword",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "call",
@@ -293,6 +279,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -302,14 +296,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -329,7 +315,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -339,15 +325,15 @@
         "required": true,
         "types": [
           {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -383,7 +369,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -440,6 +426,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -449,14 +443,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -476,7 +462,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -512,6 +498,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -540,15 +534,7 @@
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
             "type": "menu_statement",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -576,27 +562,7 @@
             "named": true
           },
           {
-            "type": "type_name",
-            "named": true
-          }
-        ]
-      },
-      "for_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "for_keyword",
-            "named": true
-          }
-        ]
-      },
-      "in_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "in_keyword",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -618,6 +584,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -627,14 +601,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -654,7 +620,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -700,6 +666,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -728,15 +702,7 @@
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
             "type": "menu_statement",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -764,7 +730,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -786,6 +752,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -795,14 +769,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -822,7 +788,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -852,6 +818,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -880,15 +854,7 @@
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
             "type": "menu_statement",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -916,27 +882,7 @@
             "named": true
           },
           {
-            "type": "type_name",
-            "named": true
-          }
-        ]
-      },
-      "else_keyword": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "else_keyword",
-            "named": true
-          }
-        ]
-      },
-      "if_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "if_keyword",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -977,6 +923,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1005,15 +959,7 @@
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
             "type": "menu_statement",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -1041,17 +987,7 @@
             "named": true
           },
           {
-            "type": "type_name",
-            "named": true
-          }
-        ]
-      },
-      "item_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "item_keyword",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -1073,6 +1009,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1082,14 +1026,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -1109,86 +1045,11 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
       }
-    }
-  },
-  {
-    "type": "keyword",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "action_keyword",
-          "named": true
-        },
-        {
-          "type": "askfor_keyword",
-          "named": true
-        },
-        {
-          "type": "embedfile_keyword",
-          "named": true
-        },
-        {
-          "type": "from_keyword",
-          "named": true
-        },
-        {
-          "type": "getclipboard_keyword",
-          "named": true
-        },
-        {
-          "type": "glyph_keyword",
-          "named": true
-        },
-        {
-          "type": "inputs_keyword",
-          "named": true
-        },
-        {
-          "type": "list_keyword",
-          "named": true
-        },
-        {
-          "type": "mac_keyword",
-          "named": true
-        },
-        {
-          "type": "makevcard_keyword",
-          "named": true
-        },
-        {
-          "type": "name_keyword",
-          "named": true
-        },
-        {
-          "type": "nil_keyword",
-          "named": true
-        },
-        {
-          "type": "noinput_keyword",
-          "named": true
-        },
-        {
-          "type": "nothing_keyword",
-          "named": true
-        },
-        {
-          "type": "rawaction_keyword",
-          "named": true
-        },
-        {
-          "type": "stop_keyword",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1201,16 +1062,6 @@
         "types": [
           {
             "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "menu_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "menu_keyword",
             "named": true
           }
         ]
@@ -1232,6 +1083,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1241,14 +1100,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -1268,46 +1119,11 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
       }
-    }
-  },
-  {
-    "type": "named_constant",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ask_constant",
-          "named": true
-        },
-        {
-          "type": "currentdate_constant",
-          "named": true
-        },
-        {
-          "type": "device_constant",
-          "named": true
-        },
-        {
-          "type": "repeatindex_constant",
-          "named": true
-        },
-        {
-          "type": "repeatitem_constant",
-          "named": true
-        },
-        {
-          "type": "shortcutinput_constant",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1331,6 +1147,14 @@
           "named": true
         },
         {
+          "type": "builtin_constant",
+          "named": true
+        },
+        {
+          "type": "builtin_keyword",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -1340,14 +1164,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "named_constant",
           "named": true
         },
         {
@@ -1367,7 +1183,7 @@
           "named": true
         },
         {
-          "type": "type_name",
+          "type": "type_keyword",
           "named": true
         }
       ]
@@ -1377,26 +1193,16 @@
     "type": "pragma",
     "named": true,
     "fields": {
-      "directive": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "pragma_directive",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "builtin_keyword",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "identifier",
             "named": true
           },
           {
@@ -1408,39 +1214,27 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
       }
-    }
-  },
-  {
-    "type": "pragma_directive",
-    "named": true,
-    "fields": {},
+    },
     "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "define_directive",
-          "named": true
-        },
-        {
-          "type": "import_directive",
-          "named": true
-        },
-        {
-          "type": "include_directive",
-          "named": true
-        },
-        {
-          "type": "question_directive",
+          "type": "pragma_directive",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "pragma_directive",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "repeat_statement",
@@ -1471,6 +1265,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1499,15 +1301,7 @@
             "named": true
           },
           {
-            "type": "keyword",
-            "named": true
-          },
-          {
             "type": "menu_statement",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -1535,7 +1329,7 @@
             "named": true
           },
           {
-            "type": "type_name",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -1557,6 +1351,14 @@
             "named": true
           },
           {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1566,14 +1368,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "keyword",
-            "named": true
-          },
-          {
-            "type": "named_constant",
             "named": true
           },
           {
@@ -1593,27 +1387,7 @@
             "named": true
           },
           {
-            "type": "type_name",
-            "named": true
-          }
-        ]
-      },
-      "for_keyword": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "for_keyword",
-            "named": true
-          }
-        ]
-      },
-      "repeat_keyword": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "repeat_keyword",
+            "type": "type_keyword",
             "named": true
           }
         ]
@@ -1675,6 +1449,14 @@
           "named": true
         },
         {
+          "type": "builtin_constant",
+          "named": true
+        },
+        {
+          "type": "builtin_keyword",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -1703,15 +1485,7 @@
           "named": true
         },
         {
-          "type": "keyword",
-          "named": true
-        },
-        {
           "type": "menu_statement",
-          "named": true
-        },
-        {
-          "type": "named_constant",
           "named": true
         },
         {
@@ -1739,7 +1513,7 @@
           "named": true
         },
         {
-          "type": "type_name",
+          "type": "type_keyword",
           "named": true
         }
       ]
@@ -1769,47 +1543,9 @@
     }
   },
   {
-    "type": "type_name",
+    "type": "type_keyword",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "bool_type",
-          "named": true
-        },
-        {
-          "type": "color_type",
-          "named": true
-        },
-        {
-          "type": "dictionary_type",
-          "named": true
-        },
-        {
-          "type": "float_type",
-          "named": true
-        },
-        {
-          "type": "number_type",
-          "named": true
-        },
-        {
-          "type": "text_type",
-          "named": true
-        },
-        {
-          "type": "variable_type",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "!=",
@@ -1817,6 +1553,22 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#define",
+    "named": false
+  },
+  {
+    "type": "#import",
+    "named": false
+  },
+  {
+    "type": "#include",
+    "named": false
+  },
+  {
+    "type": "#question",
     "named": false
   },
   {
@@ -1892,200 +1644,184 @@
     "named": false
   },
   {
-    "type": "action_keyword",
-    "named": true
+    "type": "Ask",
+    "named": false
   },
   {
-    "type": "array_type",
-    "named": true
+    "type": "CurrentDate",
+    "named": false
   },
   {
-    "type": "ask_constant",
-    "named": true
+    "type": "Device",
+    "named": false
   },
   {
-    "type": "askfor_keyword",
-    "named": true
+    "type": "RepeatIndex",
+    "named": false
+  },
+  {
+    "type": "RepeatItem",
+    "named": false
+  },
+  {
+    "type": "ShortcutInput",
+    "named": false
+  },
+  {
+    "type": "action",
+    "named": false
+  },
+  {
+    "type": "array",
+    "named": false
+  },
+  {
+    "type": "askfor",
+    "named": false
   },
   {
     "type": "at_variable",
     "named": true
   },
   {
-    "type": "bool_type",
-    "named": true
+    "type": "bool",
+    "named": false
   },
   {
-    "type": "color_type",
-    "named": true
+    "type": "color",
+    "named": false
   },
   {
-    "type": "const_keyword",
-    "named": true
+    "type": "const",
+    "named": false
   },
   {
-    "type": "currentdate_constant",
-    "named": true
+    "type": "dictionary",
+    "named": false
   },
   {
-    "type": "define_directive",
-    "named": true
+    "type": "else",
+    "named": false
   },
   {
-    "type": "device_constant",
-    "named": true
-  },
-  {
-    "type": "dictionary_type",
-    "named": true
-  },
-  {
-    "type": "else_keyword",
-    "named": true
-  },
-  {
-    "type": "embedfile_keyword",
-    "named": true
+    "type": "embedFile",
+    "named": false
   },
   {
     "type": "escape_sequence",
     "named": true
   },
   {
-    "type": "false_literal",
-    "named": true
+    "type": "false",
+    "named": false
   },
   {
-    "type": "float_type",
-    "named": true
+    "type": "float",
+    "named": false
   },
   {
-    "type": "for_keyword",
-    "named": true
+    "type": "for",
+    "named": false
   },
   {
-    "type": "from_keyword",
-    "named": true
+    "type": "from",
+    "named": false
   },
   {
-    "type": "getclipboard_keyword",
-    "named": true
+    "type": "getclipboard",
+    "named": false
   },
   {
-    "type": "glyph_keyword",
-    "named": true
+    "type": "glyph",
+    "named": false
   },
   {
     "type": "identifier",
     "named": true
   },
   {
-    "type": "if_keyword",
-    "named": true
+    "type": "if",
+    "named": false
   },
   {
-    "type": "import_directive",
-    "named": true
+    "type": "in",
+    "named": false
   },
   {
-    "type": "in_keyword",
-    "named": true
+    "type": "inputs",
+    "named": false
   },
   {
-    "type": "include_directive",
-    "named": true
+    "type": "item",
+    "named": false
   },
   {
-    "type": "inputs_keyword",
-    "named": true
+    "type": "list",
+    "named": false
   },
   {
-    "type": "item_keyword",
-    "named": true
+    "type": "mac",
+    "named": false
   },
   {
-    "type": "list_keyword",
-    "named": true
+    "type": "makeVCard",
+    "named": false
   },
   {
-    "type": "mac_keyword",
-    "named": true
+    "type": "menu",
+    "named": false
   },
   {
-    "type": "makevcard_keyword",
-    "named": true
+    "type": "name",
+    "named": false
   },
   {
-    "type": "menu_keyword",
-    "named": true
+    "type": "nil",
+    "named": false
   },
   {
-    "type": "name_keyword",
-    "named": true
+    "type": "noinput",
+    "named": false
   },
   {
-    "type": "nil_keyword",
-    "named": true
-  },
-  {
-    "type": "noinput_keyword",
-    "named": true
-  },
-  {
-    "type": "nothing_keyword",
-    "named": true
+    "type": "nothing",
+    "named": false
   },
   {
     "type": "number",
     "named": true
   },
   {
-    "type": "number_type",
-    "named": true
+    "type": "number",
+    "named": false
   },
   {
-    "type": "question_directive",
-    "named": true
+    "type": "rawAction",
+    "named": false
   },
   {
-    "type": "rawaction_keyword",
-    "named": true
+    "type": "repeat",
+    "named": false
   },
   {
-    "type": "repeat_keyword",
-    "named": true
-  },
-  {
-    "type": "repeatindex_constant",
-    "named": true
-  },
-  {
-    "type": "repeatitem_constant",
-    "named": true
-  },
-  {
-    "type": "shortcutinput_constant",
-    "named": true
-  },
-  {
-    "type": "stop_keyword",
-    "named": true
+    "type": "stop",
+    "named": false
   },
   {
     "type": "string_content",
     "named": true
   },
   {
-    "type": "text_type",
-    "named": true
+    "type": "text",
+    "named": false
   },
   {
-    "type": "true_literal",
-    "named": true
+    "type": "true",
+    "named": false
   },
   {
-    "type": "variable_type",
-    "named": true
+    "type": "variable",
+    "named": false
   },
   {
     "type": "{",
