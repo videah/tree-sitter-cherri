@@ -8,7 +8,6 @@
 // @ts-check
 
 // grammar.js
-// Safe Tree-sitter grammar for "Cherri" language
 const PREC = {
   ASSIGN: 1,
   OR: 2,
@@ -35,8 +34,10 @@ module.exports = grammar({
     _statement: ($) =>
       choice(
         $.pragma,
-        $.assignment,
-        $.declaration,
+        $.variable_assignment, // @var = value
+        $.constant_assignment, // const var = value
+        $.identifier_assignment, // var = value
+        $.declaration, // @var: type
         $.if_statement,
         $.for_statement,
         $.repeat_statement,
@@ -46,7 +47,6 @@ module.exports = grammar({
         $._expression,
       ),
 
-    // Pragmas: #include, #define, #import, #question
     pragma: ($) =>
       seq(
         $.pragma_directive,
@@ -62,11 +62,10 @@ module.exports = grammar({
         ),
       ),
 
-    // Pragma directives as tokens
     pragma_directive: ($) =>
       choice("#include", "#define", "#import", "#question"),
 
-    // Type annotations like @variable: type
+    // Type annotations: @variable: type
     declaration: ($) =>
       seq(
         field("name", $.at_variable),
@@ -74,19 +73,32 @@ module.exports = grammar({
         field("type", choice($.type_keyword, $.identifier)),
       ),
 
-    // Variable assignment
-    assignment: ($) =>
+    // @variable = value
+    variable_assignment: ($) =>
+      prec(
+        PREC.ASSIGN,
+        seq(field("name", $.at_variable), "=", field("value", $._expression)),
+      ),
+
+    // const identifier = value
+    constant_assignment: ($) =>
       prec(
         PREC.ASSIGN,
         seq(
-          optional("const"),
-          field("name", choice($.identifier, $.at_variable)),
+          "const",
+          field("name", $.identifier),
           "=",
           field("value", $._expression),
         ),
       ),
 
-    // Control structures
+    // identifier = value (regular assignment)
+    identifier_assignment: ($) =>
+      prec(
+        PREC.ASSIGN,
+        seq(field("name", $.identifier), "=", field("value", $._expression)),
+      ),
+
     if_statement: ($) =>
       prec.right(
         PREC.STATEMENT,
@@ -155,6 +167,8 @@ module.exports = grammar({
 
     block: ($) => prec(1, seq("{", repeat($._statement), "}")),
 
+    // Note: at_variable is now only allowed in expressions for references,
+    // not as standalone statements
     _expression: ($) =>
       choice(
         $.binary_expression,
@@ -162,7 +176,7 @@ module.exports = grammar({
         $.parenthesized_expression,
         $.dictionary,
         $.identifier,
-        $.at_variable,
+        $.at_variable, // Allow @var references in expressions
         $.number,
         $.string,
         $.single_quoted_string,
@@ -185,10 +199,8 @@ module.exports = grammar({
         field("value", $._expression),
       ),
 
-    // Boolean literals
     boolean: ($) => choice("true", "false"),
 
-    // Built-in keywords as a single rule
     builtin_keyword: ($) =>
       choice(
         "name",
@@ -209,7 +221,6 @@ module.exports = grammar({
         "nothing",
       ),
 
-    // Built-in constants as a single rule
     builtin_constant: ($) =>
       choice(
         "CurrentDate",
@@ -220,7 +231,6 @@ module.exports = grammar({
         "Ask",
       ),
 
-    // Type keywords as a single rule
     type_keyword: ($) =>
       choice(
         "text",
@@ -263,7 +273,7 @@ module.exports = grammar({
         ),
       ),
 
-    at_variable: ($) => /@[^ \t\n\r:]+/,
+    at_variable: ($) => /@[^ \t\n\r:=]+/,
 
     string: ($) =>
       seq(

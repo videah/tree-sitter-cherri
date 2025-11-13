@@ -19,7 +19,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "assignment"
+          "name": "variable_assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constant_assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier_assignment"
         },
         {
           "type": "SYMBOL",
@@ -148,39 +156,80 @@
         }
       ]
     },
-    "assignment": {
+    "variable_assignment": {
       "type": "PREC",
       "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "const"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "at_variable"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
+    },
+    "constant_assignment": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "const"
           },
           {
             "type": "FIELD",
             "name": "name",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "at_variable"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
+    },
+    "identifier_assignment": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
             }
           },
           {
@@ -1136,7 +1185,7 @@
     },
     "at_variable": {
       "type": "PATTERN",
-      "value": "@[^ \\t\\n\\r:]+"
+      "value": "@[^ \\t\\n\\r:=]+"
     },
     "string": {
       "type": "SEQ",

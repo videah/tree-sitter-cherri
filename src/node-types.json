@@ -1,83 +1,5 @@
 [
   {
-    "type": "assignment",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "at_variable",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "at_variable",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "builtin_constant",
-            "named": true
-          },
-          {
-            "type": "builtin_keyword",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "dictionary",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "type_keyword",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "binary_expression",
     "named": true,
     "fields": {},
@@ -149,10 +71,6 @@
       "required": false,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "at_variable",
           "named": true
         },
@@ -181,6 +99,10 @@
           "named": true
         },
         {
+          "type": "constant_assignment",
+          "named": true
+        },
+        {
           "type": "declaration",
           "named": true
         },
@@ -194,6 +116,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "identifier_assignment",
           "named": true
         },
         {
@@ -234,6 +160,10 @@
         },
         {
           "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "variable_assignment",
           "named": true
         }
       ]
@@ -345,6 +275,80 @@
     "named": true,
     "extra": true,
     "fields": {}
+  },
+  {
+    "type": "constant_assignment",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "at_variable",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dictionary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "declaration",
@@ -478,10 +482,6 @@
         "required": true,
         "types": [
           {
-            "type": "assignment",
-            "named": true
-          },
-          {
             "type": "at_variable",
             "named": true
           },
@@ -510,6 +510,10 @@
             "named": true
           },
           {
+            "type": "constant_assignment",
+            "named": true
+          },
+          {
             "type": "declaration",
             "named": true
           },
@@ -523,6 +527,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "identifier_assignment",
             "named": true
           },
           {
@@ -563,6 +571,10 @@
           },
           {
             "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "variable_assignment",
             "named": true
           }
         ]
@@ -638,6 +650,80 @@
     }
   },
   {
+    "type": "identifier_assignment",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "at_variable",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dictionary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -645,10 +731,6 @@
         "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "assignment",
-            "named": true
-          },
           {
             "type": "at_variable",
             "named": true
@@ -678,6 +760,10 @@
             "named": true
           },
           {
+            "type": "constant_assignment",
+            "named": true
+          },
+          {
             "type": "declaration",
             "named": true
           },
@@ -691,6 +777,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "identifier_assignment",
             "named": true
           },
           {
@@ -731,6 +821,10 @@
           },
           {
             "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "variable_assignment",
             "named": true
           }
         ]
@@ -798,10 +892,6 @@
         "required": true,
         "types": [
           {
-            "type": "assignment",
-            "named": true
-          },
-          {
             "type": "at_variable",
             "named": true
           },
@@ -830,6 +920,10 @@
             "named": true
           },
           {
+            "type": "constant_assignment",
+            "named": true
+          },
+          {
             "type": "declaration",
             "named": true
           },
@@ -843,6 +937,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "identifier_assignment",
             "named": true
           },
           {
@@ -883,6 +981,10 @@
           },
           {
             "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "variable_assignment",
             "named": true
           }
         ]
@@ -903,10 +1005,6 @@
         "required": true,
         "types": [
           {
-            "type": "assignment",
-            "named": true
-          },
-          {
             "type": "at_variable",
             "named": true
           },
@@ -935,6 +1033,10 @@
             "named": true
           },
           {
+            "type": "constant_assignment",
+            "named": true
+          },
+          {
             "type": "declaration",
             "named": true
           },
@@ -948,6 +1050,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "identifier_assignment",
             "named": true
           },
           {
@@ -988,6 +1094,10 @@
           },
           {
             "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "variable_assignment",
             "named": true
           }
         ]
@@ -1245,10 +1355,6 @@
         "required": true,
         "types": [
           {
-            "type": "assignment",
-            "named": true
-          },
-          {
             "type": "at_variable",
             "named": true
           },
@@ -1277,6 +1383,10 @@
             "named": true
           },
           {
+            "type": "constant_assignment",
+            "named": true
+          },
+          {
             "type": "declaration",
             "named": true
           },
@@ -1290,6 +1400,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "identifier_assignment",
             "named": true
           },
           {
@@ -1330,6 +1444,10 @@
           },
           {
             "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "variable_assignment",
             "named": true
           }
         ]
@@ -1429,10 +1547,6 @@
       "required": false,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "at_variable",
           "named": true
         },
@@ -1461,6 +1575,10 @@
           "named": true
         },
         {
+          "type": "constant_assignment",
+          "named": true
+        },
+        {
           "type": "declaration",
           "named": true
         },
@@ -1474,6 +1592,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "identifier_assignment",
           "named": true
         },
         {
@@ -1515,6 +1637,10 @@
         {
           "type": "type_keyword",
           "named": true
+        },
+        {
+          "type": "variable_assignment",
+          "named": true
         }
       ]
     }
@@ -1546,6 +1672,80 @@
     "type": "type_keyword",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "variable_assignment",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "at_variable",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "at_variable",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin_constant",
+            "named": true
+          },
+          {
+            "type": "builtin_keyword",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "dictionary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "!=",
@@ -1789,11 +1989,11 @@
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "rawAction",
