@@ -49,7 +49,7 @@ module.exports = grammar({
     // Pragmas: #include, #define, #import, #question
     pragma: ($) =>
       seq(
-        choice("#include", "#define", "#import", "#question"),
+        field("directive", $.pragma_directive),
         field(
           "value",
           choice(
@@ -60,6 +60,15 @@ module.exports = grammar({
             $.type_name,
           ),
         ),
+      ),
+
+    // Create actual nodes for pragma directives
+    pragma_directive: ($) =>
+      choice(
+        alias("#include", $.include_directive),
+        alias("#define", $.define_directive),
+        alias("#import", $.import_directive),
+        alias("#question", $.question_directive),
       ),
 
     // Type annotations like @variable: type
@@ -75,7 +84,7 @@ module.exports = grammar({
       prec(
         PREC.ASSIGN,
         seq(
-          optional("const"),
+          optional(field("const_modifier", alias("const", $.const_keyword))),
           field("name", choice($.identifier, $.at_variable)),
           "=",
           field("value", $._expression),
@@ -87,11 +96,14 @@ module.exports = grammar({
       prec.right(
         PREC.STATEMENT,
         seq(
-          "if",
+          field("if_keyword", alias("if", $.if_keyword)),
           field("condition", $._expression),
           field("consequence", choice($.block, $._statement)),
           optional(
-            seq("else", field("alternative", choice($.block, $._statement))),
+            seq(
+              field("else_keyword", alias("else", $.else_keyword)),
+              field("alternative", choice($.block, $._statement)),
+            ),
           ),
         ),
       ),
@@ -100,9 +112,9 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          "for",
+          field("for_keyword", alias("for", $.for_keyword)),
           field("variable", $.identifier),
-          "in",
+          field("in_keyword", alias("in", $.in_keyword)),
           field("iterable", $._expression),
           field("body", choice($.block, $._statement)),
         ),
@@ -115,20 +127,23 @@ module.exports = grammar({
         choice(
           // repeat variable for count { ... }
           seq(
-            "repeat",
+            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
             field("variable", $.identifier),
-            "for",
+            field("for_keyword", alias("for", $.for_keyword)),
             field("count", $._expression),
             field("body", choice($.block, $._statement)),
           ),
           // repeat count { ... }
           seq(
-            "repeat",
+            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
             field("count", $._expression),
             field("body", choice($.block, $._statement)),
           ),
           // repeat { ... }
-          seq("repeat", field("body", choice($.block, $._statement))),
+          seq(
+            field("repeat_keyword", alias("repeat", $.repeat_keyword)),
+            field("body", choice($.block, $._statement)),
+          ),
         ),
       ),
 
@@ -136,7 +151,7 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          "menu",
+          field("menu_keyword", alias("menu", $.menu_keyword)),
           optional(field("title", $._expression)),
           field("body", $.block),
         ),
@@ -146,7 +161,7 @@ module.exports = grammar({
       prec(
         PREC.STATEMENT,
         seq(
-          "item",
+          field("item_keyword", alias("item", $.item_keyword)),
           field("title", $._expression),
           ":",
           field("body", choice($.block, $._statement)),
@@ -188,28 +203,29 @@ module.exports = grammar({
         field("value", $._expression),
       ),
 
-    // Boolean literals
-    boolean: ($) => choice("true", "false"),
+    // Boolean literals - create actual nodes
+    boolean: ($) =>
+      choice(alias("true", $.true_literal), alias("false", $.false_literal)),
 
-    // Keywords from TextMate (removing control keywords that are now statements)
+    // Keywords from TextMate - now create actual nodes
     keyword: ($) =>
       choice(
-        "name",
-        "glyph",
-        "from",
-        "mac",
-        "inputs",
-        "noinput",
-        "askfor",
-        "getclipboard",
-        "list",
-        "nil",
-        "action",
-        "stop",
-        "makeVCard",
-        "rawAction",
-        "embedFile",
-        "nothing",
+        alias("name", $.name_keyword),
+        alias("glyph", $.glyph_keyword),
+        alias("from", $.from_keyword),
+        alias("mac", $.mac_keyword),
+        alias("inputs", $.inputs_keyword),
+        alias("noinput", $.noinput_keyword),
+        alias("askfor", $.askfor_keyword),
+        alias("getclipboard", $.getclipboard_keyword),
+        alias("list", $.list_keyword),
+        alias("nil", $.nil_keyword),
+        alias("action", $.action_keyword),
+        alias("stop", $.stop_keyword),
+        alias("makeVCard", $.makevcard_keyword),
+        alias("rawAction", $.rawaction_keyword),
+        alias("embedFile", $.embedfile_keyword),
+        alias("nothing", $.nothing_keyword),
       ),
 
     // Parenthesized expression for grouping
@@ -274,28 +290,28 @@ module.exports = grammar({
     // Identifiers
     identifier: ($) => /[A-Za-z_][A-Za-z0-9_]*/,
 
-    // Named constants - exact match from TextMate
+    // Named constants - now create actual nodes
     named_constant: ($) =>
       choice(
-        "CurrentDate",
-        "Device",
-        "RepeatIndex",
-        "RepeatItem",
-        "ShortcutInput",
-        "Ask",
+        alias("CurrentDate", $.currentdate_constant),
+        alias("Device", $.device_constant),
+        alias("RepeatIndex", $.repeatindex_constant),
+        alias("RepeatItem", $.repeatitem_constant),
+        alias("ShortcutInput", $.shortcutinput_constant),
+        alias("Ask", $.ask_constant),
       ),
 
-    // Types - exact match from TextMate
+    // Types - now create actual nodes
     type_name: ($) =>
       choice(
-        "text",
-        "number",
-        "bool",
-        "dictionary",
-        "array",
-        "variable",
-        "color",
-        "float",
+        alias("text", $.text_type),
+        alias("number", $.number_type),
+        alias("bool", $.bool_type),
+        alias("dictionary", $.dictionary_type),
+        alias("array", $.array_type),
+        alias("variable", $.variable_type),
+        alias("color", $.color_type),
+        alias("float", $.float_type),
       ),
 
     // Comments - both line and block comments

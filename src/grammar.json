@@ -59,25 +59,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "#include"
-            },
-            {
-              "type": "STRING",
-              "value": "#define"
-            },
-            {
-              "type": "STRING",
-              "value": "#import"
-            },
-            {
-              "type": "STRING",
-              "value": "#question"
-            }
-          ]
+          "type": "FIELD",
+          "name": "directive",
+          "content": {
+            "type": "SYMBOL",
+            "name": "pragma_directive"
+          }
         },
         {
           "type": "FIELD",
@@ -107,6 +94,47 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "pragma_directive": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "#include"
+          },
+          "named": true,
+          "value": "include_directive"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "#define"
+          },
+          "named": true,
+          "value": "define_directive"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "#import"
+          },
+          "named": true,
+          "value": "import_directive"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "#question"
+          },
+          "named": true,
+          "value": "question_directive"
         }
       ]
     },
@@ -154,8 +182,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "const"
+                "type": "FIELD",
+                "name": "const_modifier",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "const"
+                  },
+                  "named": true,
+                  "value": "const_keyword"
+                }
               },
               {
                 "type": "BLANK"
@@ -201,8 +238,17 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "if"
+            "type": "FIELD",
+            "name": "if_keyword",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "if"
+              },
+              "named": true,
+              "value": "if_keyword"
+            }
           },
           {
             "type": "FIELD",
@@ -236,8 +282,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "else"
+                    "type": "FIELD",
+                    "name": "else_keyword",
+                    "content": {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "STRING",
+                        "value": "else"
+                      },
+                      "named": true,
+                      "value": "else_keyword"
+                    }
                   },
                   {
                     "type": "FIELD",
@@ -273,8 +328,17 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "for"
+            "type": "FIELD",
+            "name": "for_keyword",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "for"
+              },
+              "named": true,
+              "value": "for_keyword"
+            }
           },
           {
             "type": "FIELD",
@@ -285,8 +349,17 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "in"
+            "type": "FIELD",
+            "name": "in_keyword",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "in"
+              },
+              "named": true,
+              "value": "in_keyword"
+            }
           },
           {
             "type": "FIELD",
@@ -326,8 +399,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "repeat"
+                "type": "FIELD",
+                "name": "repeat_keyword",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "repeat"
+                  },
+                  "named": true,
+                  "value": "repeat_keyword"
+                }
               },
               {
                 "type": "FIELD",
@@ -338,8 +420,17 @@
                 }
               },
               {
-                "type": "STRING",
-                "value": "for"
+                "type": "FIELD",
+                "name": "for_keyword",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "for"
+                  },
+                  "named": true,
+                  "value": "for_keyword"
+                }
               },
               {
                 "type": "FIELD",
@@ -372,8 +463,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "repeat"
+                "type": "FIELD",
+                "name": "repeat_keyword",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "repeat"
+                  },
+                  "named": true,
+                  "value": "repeat_keyword"
+                }
               },
               {
                 "type": "FIELD",
@@ -406,8 +506,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "repeat"
+                "type": "FIELD",
+                "name": "repeat_keyword",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "repeat"
+                  },
+                  "named": true,
+                  "value": "repeat_keyword"
+                }
               },
               {
                 "type": "FIELD",
@@ -438,8 +547,17 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "menu"
+            "type": "FIELD",
+            "name": "menu_keyword",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "menu"
+              },
+              "named": true,
+              "value": "menu_keyword"
+            }
           },
           {
             "type": "CHOICE",
@@ -475,8 +593,17 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "item"
+            "type": "FIELD",
+            "name": "item_keyword",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "item"
+              },
+              "named": true,
+              "value": "item_keyword"
+            }
           },
           {
             "type": "FIELD",
@@ -679,12 +806,22 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "true"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "named": true,
+          "value": "true_literal"
         },
         {
-          "type": "STRING",
-          "value": "false"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "false"
+          },
+          "named": true,
+          "value": "false_literal"
         }
       ]
     },
@@ -692,68 +829,148 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "name"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "name"
+          },
+          "named": true,
+          "value": "name_keyword"
         },
         {
-          "type": "STRING",
-          "value": "glyph"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "glyph"
+          },
+          "named": true,
+          "value": "glyph_keyword"
         },
         {
-          "type": "STRING",
-          "value": "from"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "from"
+          },
+          "named": true,
+          "value": "from_keyword"
         },
         {
-          "type": "STRING",
-          "value": "mac"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "mac"
+          },
+          "named": true,
+          "value": "mac_keyword"
         },
         {
-          "type": "STRING",
-          "value": "inputs"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "inputs"
+          },
+          "named": true,
+          "value": "inputs_keyword"
         },
         {
-          "type": "STRING",
-          "value": "noinput"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "noinput"
+          },
+          "named": true,
+          "value": "noinput_keyword"
         },
         {
-          "type": "STRING",
-          "value": "askfor"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "askfor"
+          },
+          "named": true,
+          "value": "askfor_keyword"
         },
         {
-          "type": "STRING",
-          "value": "getclipboard"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "getclipboard"
+          },
+          "named": true,
+          "value": "getclipboard_keyword"
         },
         {
-          "type": "STRING",
-          "value": "list"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "list"
+          },
+          "named": true,
+          "value": "list_keyword"
         },
         {
-          "type": "STRING",
-          "value": "nil"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "nil"
+          },
+          "named": true,
+          "value": "nil_keyword"
         },
         {
-          "type": "STRING",
-          "value": "action"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "action"
+          },
+          "named": true,
+          "value": "action_keyword"
         },
         {
-          "type": "STRING",
-          "value": "stop"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "stop"
+          },
+          "named": true,
+          "value": "stop_keyword"
         },
         {
-          "type": "STRING",
-          "value": "makeVCard"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "makeVCard"
+          },
+          "named": true,
+          "value": "makevcard_keyword"
         },
         {
-          "type": "STRING",
-          "value": "rawAction"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "rawAction"
+          },
+          "named": true,
+          "value": "rawaction_keyword"
         },
         {
-          "type": "STRING",
-          "value": "embedFile"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "embedFile"
+          },
+          "named": true,
+          "value": "embedfile_keyword"
         },
         {
-          "type": "STRING",
-          "value": "nothing"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "nothing"
+          },
+          "named": true,
+          "value": "nothing_keyword"
         }
       ]
     },
@@ -1196,28 +1413,58 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "CurrentDate"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "CurrentDate"
+          },
+          "named": true,
+          "value": "currentdate_constant"
         },
         {
-          "type": "STRING",
-          "value": "Device"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "Device"
+          },
+          "named": true,
+          "value": "device_constant"
         },
         {
-          "type": "STRING",
-          "value": "RepeatIndex"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "RepeatIndex"
+          },
+          "named": true,
+          "value": "repeatindex_constant"
         },
         {
-          "type": "STRING",
-          "value": "RepeatItem"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "RepeatItem"
+          },
+          "named": true,
+          "value": "repeatitem_constant"
         },
         {
-          "type": "STRING",
-          "value": "ShortcutInput"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "ShortcutInput"
+          },
+          "named": true,
+          "value": "shortcutinput_constant"
         },
         {
-          "type": "STRING",
-          "value": "Ask"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "Ask"
+          },
+          "named": true,
+          "value": "ask_constant"
         }
       ]
     },
@@ -1225,36 +1472,76 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "text"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "text"
+          },
+          "named": true,
+          "value": "text_type"
         },
         {
-          "type": "STRING",
-          "value": "number"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "number"
+          },
+          "named": true,
+          "value": "number_type"
         },
         {
-          "type": "STRING",
-          "value": "bool"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "bool"
+          },
+          "named": true,
+          "value": "bool_type"
         },
         {
-          "type": "STRING",
-          "value": "dictionary"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "dictionary"
+          },
+          "named": true,
+          "value": "dictionary_type"
         },
         {
-          "type": "STRING",
-          "value": "array"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "array"
+          },
+          "named": true,
+          "value": "array_type"
         },
         {
-          "type": "STRING",
-          "value": "variable"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "variable"
+          },
+          "named": true,
+          "value": "variable_type"
         },
         {
-          "type": "STRING",
-          "value": "color"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "color"
+          },
+          "named": true,
+          "value": "color_type"
         },
         {
-          "type": "STRING",
-          "value": "float"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "float"
+          },
+          "named": true,
+          "value": "float_type"
         }
       ]
     },
